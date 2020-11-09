@@ -13,7 +13,6 @@ app.use(express.json());
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-//app.use('/api/tumblr', require('./routes/api/tumblr'));
 
 
 // Serve static assets in production

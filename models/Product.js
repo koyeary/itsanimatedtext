@@ -2,17 +2,9 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    id: {
+    name: {
         required: true,
-        type: Number
-    },
-    title: {
-        required: true,
-        type: String
-    },
-    body_html: {
-        required: true,
-        type: String
+        type: String,
     },
     image_src: {
         required: true,
@@ -22,11 +14,10 @@ const ProductSchema = new Schema({
         required: true,
         type: Number
     },
-    created_at: {
-        type: Date,
-        default: Date.now
+    description: {
+        type: String
       },
-    updated_at: {
+    last_updated: {
         type: Date,
         default: Date.now
     }

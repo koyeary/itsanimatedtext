@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/routing/Routes';
 import Home from './components/Home'; 
 import Navigation from './components/navs/Navigation';
+import Header from './components/navs/Header';
 import './App.css';
 
 // Redux
@@ -30,6 +31,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+          <Header/>
           <Navigation />
           <Switch>
             <Route exact path='/' component={Home} />

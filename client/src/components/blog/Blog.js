@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 //import InfiniteScroll from 'react-infinite-scroller';
-import { Button, Col, Row } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPaperPlane,
-  faShareSquare,
-  faHeart
-} from '@fortawesome/free-solid-svg-icons';
+import { Col, Row } from 'react-bootstrap';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
-  const tumble = <FontAwesomeIcon icon={['fab, tumblr']}/>;
-  const msg = <FontAwesomeIcon icon={faPaperPlane} style={{margin:3}}/>;
-  const share = <FontAwesomeIcon icon={faShareSquare} style={{margin:3}} />;
-  const heart = <FontAwesomeIcon icon={faHeart} style={{margin:3}} />;
+  const notes = '595 notes';
+  const source = 'animatedtext';
+  const tags = '#green #gif #animatedtext #wordart #transparent #prismhibiscusroesmary'
 
   useEffect(() => {
     searchTumblr();
@@ -49,30 +42,31 @@ const Blog = () => {
 
         return (
           <div>
-            <Row style={{ padding: '10px;' }}>
-              <Col small={3} large={4}></Col>
-              <Col small={6} large={4}>
+            <Row className='my-5'>
+              <Col sm={3} lg={4}></Col>
+              <Col sm={6} lg={4}>
                 <div
                   className='card'
-                  style={{ borderRadius: 5, maxWidth: 500 }}
+                  style={{ borderRadius: 7, borderColor: '#f8f7fd' }}
                 >
-                  <img src={photo} alt='tumblr post' />
+                  <div className='card-img-top'>
+                  <img className="w-100" src={photo} alt='tumblr post'/>
+                  </div>
                   <div className='card-section'>
-                    {/* source and tabs in <p> */}
-
-                    <Col>
-                      {heart}
-
+                    Source:{source} {tags}
+                    <Col className="pt-1 pb-2" style={{ fontWeight: 600 }}>
+                    {notes}
                       <div className='float-right'>
-                        {tumble}
-                        {msg}
-                        {share}
+                      <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        <i class="fa fa-retweet" aria-hidden="true"></i>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
                       </div>
                     </Col>
+                    <Row/>
                   </div>
                 </div>
               </Col>
-              <Col small={3} large={4}></Col>
+              <Col sm={3} lg={4}></Col>
             </Row>
           </div>
         );

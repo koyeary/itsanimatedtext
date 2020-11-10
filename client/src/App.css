@@ -1,3 +1,15 @@
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+i {
+  padding: 3px;
+}
+
+i:hover {
+  color: black;
+}
+
 .card {
   border-radius: 5%;
   border-color: #95939f;

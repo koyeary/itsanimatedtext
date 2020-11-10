@@ -1,32 +1,32 @@
-/* import React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Cell, Thumbnail } from 'react-foundation';
+import { Row, Col } from 'react-bootstrap';
 
 const Shop = () => {
     return (
-        <div className='grid-block-example'>
-        <Grid upOnSmall={1} upOnMedium={2} upOnLarge={4}>
-          <Cell isColumn>
-            <Thumbnail src='//unsplash.it/300' alt='' />
-          </Cell>
-          <Cell isColumn>
-            <Thumbnail src='//unsplash.it/300' alt='' />
-          </Cell>
-          <Cell isColumn>
-            <Thumbnail src='//unsplash.it/300' alt='' />
-          </Cell>
-          <Cell isColumn>
-            <Thumbnail src='//unsplash.it/300' alt='' />
-          </Cell>
-          <Cell isColumn>
-            <Thumbnail src='//unsplash.it/300' alt='' />
-          </Cell>
-          <Cell isColumn>
-            <Thumbnail src='//unsplash.it/300' alt='' />
-          </Cell>
-        </Grid>
-      </div>
+
+        <Row>
+          <Col >
+            <img src='//unsplash.it/300' alt='' />
+          </Col>
+          <Col >
+            <img src='//unsplash.it/300' alt='' />
+          </Col>
+          <Col >
+            <img src='//unsplash.it/300' alt='' />
+          </Col>
+          <Col >
+            <img src='//unsplash.it/300' alt='' />
+          </Col>
+          <Col >
+            <img src='//unsplash.it/300' alt='' />
+          </Col>
+          <Col >
+            <img src='//unsplash.it/300' alt='' />
+          </Col>
+        </Row>
+
     );
 }
 
-export default Shop; */
+export default Shop;

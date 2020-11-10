@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import About from '../about/About';
-import Contact from '../about/Contact';
+import Contact from '../contact/Contact';
 import Shop from '../shop/Shop';
 import Blog from '../blog/Blog';
 import Admin from '../auth/Admin';

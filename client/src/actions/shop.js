@@ -10,7 +10,7 @@ import {
 } from './types';
 
 // Get products
-export const getProducts = () => async (dispatch) => {
+/* export const getProducts = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/shop');
 
@@ -61,7 +61,7 @@ export const deleteProduct = (id) => async (dispatch) => {
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
-};
+}; */
 
 // Add product
 export const addProduct = (formData) => async (dispatch) => {
@@ -72,7 +72,7 @@ export const addProduct = (formData) => async (dispatch) => {
   };
 
   try {
-    const res = await axios.product('/api/shop', formData, config);
+    const res = await axios.post('/shop', formData, config);
 
     dispatch({
       type: ADD_PRODUCT,
@@ -82,13 +82,12 @@ export const addProduct = (formData) => async (dispatch) => {
     dispatch(setAlert('Product Created', 'success'));
   } catch (err) {
     dispatch({
-      type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: PRODUCT_ERROR
     });
   }
 };
 
-// Get product
+/* // Get product
 export const getProduct = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/shop/${id}`);
@@ -104,5 +103,5 @@ export const getProduct = (id) => async (dispatch) => {
     });
   }
 };
-
+ */
 

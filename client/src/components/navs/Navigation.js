@@ -6,7 +6,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { logout } from '../../actions/auth';
 
 const Navigation = ({ auth: { isAuthenticated }, logout }) => {
-  const cart = <i class='fa fa-shopping-cart' aria-hidden='true' />;
+  const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
 
   const logOut = (
     <Fragment>

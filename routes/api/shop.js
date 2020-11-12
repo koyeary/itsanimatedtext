@@ -20,12 +20,12 @@ router.get('/', async (req, res) => {
 });
 
 
-// @route    GET api/shop/admin
+// @route    GET api/shop/
 // @desc     Get product in this shop
-// @access   Private
-router.get('/admin', auth, async (req, res) => {
+// @access   Public
+router.get('/:id', async (req, res) => {
   try {
-    const product = await Product.findOne({ _id: req.body.id });
+    const product = await Product.findOne({ id: req.body.id });
 
     if (!product) {
       return res.status(400).json({
@@ -123,6 +123,18 @@ router.put(
     }
   }
 );
+
+// @route    DELETE api/shop
+// @desc     Delete a product
+// @access   Private
+router.delete('/admin', auth, async (req, res) => {
+  try {
+    await Product.findOneAndRemove({ id });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error')
+  }
+});
 
 
 module.exports = router;

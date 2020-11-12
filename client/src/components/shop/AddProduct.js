@@ -9,6 +9,7 @@ const Shop = () => {
     return (
       <Fragment>
         <Row>
+            <h1>Edit shop</h1>
         <Spinner animation="grow"/>
           <Col >
             <img src="//unsplash.it/300" alt="" />

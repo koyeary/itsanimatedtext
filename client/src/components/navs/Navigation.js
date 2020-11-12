@@ -2,70 +2,78 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav } from 'react-bootstrap';
 import { logout } from '../../actions/auth';
 
 const Navigation = ({ auth: { isAuthenticated }, logout }) => {
-  
-  const cart = <FontAwesomeIcon icon={faShoppingCart} />;
+  const cart = <i class='fa fa-shopping-cart' aria-hidden='true' />;
 
-  const authLinks = (
+  const logOut = (
     <Fragment>
-      <Nav>
-        <Nav.Link>
-          <Link to="/">Make Post</Link>
-        </Nav.Link>
-        <Nav.Link>
-          <Link to="/">Edit Shop</Link>
-        </Nav.Link>
-      </Nav>
-      <Nav className="align-right">
-        <Nav.Link>
-          <a onClick={logout} href="#!">
-            <i className="fas fa-sign-out-alt" />{" "}
-            <span className="hide-sm">Logout Admin</span>
-          </a>
-        </Nav.Link>
-      </Nav>
+      <i className='fas fa-user-minus' aria-hidden='true' />
     </Fragment>
   );
 
-  const guestLinks = (
+  const checkout = (
     <Fragment>
-      <Nav className="align-left">
+      <Nav.Item>
         <Nav.Link>
-          <Link to="/">Home</Link>
+          <Link to='/cart'>{ cart }</Link>
         </Nav.Link>
+      </Nav.Item>
+    </Fragment>
+  );
 
+  const authLinks = (
+    <Fragment >
+      <Nav.Item>
         <Nav.Link>
-          <Link to="/blog">Blog</Link>
+          <Link to='/makepost'>Make Post</Link>
         </Nav.Link>
-
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link>
-          <Link to="/shop">Shop</Link>
+          <Link to='/shop/edit'>Edit Shop</Link>
         </Nav.Link>
-
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link>
-          <Link to="/about">About</Link>
+          <a onClick={ logout } href='#!'>
+            { logOut }
+          </a>
         </Nav.Link>
-
-        <Nav.Link>
-          <Link to="/contact">Contact</Link>
-        </Nav.Link>
-      </Nav>
-      <Nav className="align-right">
-        <Nav.Link>
-          <Link to="/cart">{cart}</Link>
-        </Nav.Link>
-      </Nav>
+      </Nav.Item>
     </Fragment>
   );
 
   return (
-    <Navbar>
-      <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+    <Navbar className='bg-light justify-content-end sticky-top'>
+      <Nav>
+        <Nav.Item>
+          <Nav.Link>
+            <Link to='/'>Home</Link>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Link>
+          <Link to='/blog'>Blog</Link>
+        </Nav.Link>
+        <Nav.Item>
+          <Nav.Link>
+            <Link to='/shop'>Shop</Link>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Link>
+          <Link to='/about'>About</Link>
+        </Nav.Link>
+        <Nav.Item>
+          <Nav.Link>
+            <Link to='/contact'>Contact</Link>
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <Nav>
+        { isAuthenticated ? authLinks : checkout }
+      </Nav>
     </Navbar>
   );
 };

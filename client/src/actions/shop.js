@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { setAlert } from './alert';
 import {
   ADD_PRODUCT,
@@ -72,7 +72,7 @@ export const addProduct = (formData) => async (dispatch) => {
   };
 
   try {
-    const res = await axios.post('/shop', formData, config);
+    const res = await api.post('/shop/admin', formData, config);
 
     dispatch({
       type: ADD_PRODUCT,

@@ -7,7 +7,7 @@ import Blog from '../blog/Blog';
 import Admin from '../auth/Admin';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
-import MakePost from '../blog/MakePost';
+//import MakePost from '../blog/MakePost';
 import AddProduct from '../shop/AddProduct';
 import PrivateRoute from '../routing/PrivateRoute';
 

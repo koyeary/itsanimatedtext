@@ -9,8 +9,10 @@ import {
   } from '../actions/types';
 
 const initialState = {
-  product: null,
-  loading: true
+  token: localStorage.getItem('token'),
+  isAuthenticated: null,
+  loading: true,
+  product: null
 };
 
 export default function (state = initialState, action) {
@@ -32,7 +34,8 @@ export default function (state = initialState, action) {
     case ADD_PRODUCT:
       return {
         ...state,
-        products: [payload, ...state.products],
+        ...payload,
+        isAuthenticated: true,
         loading: false
       };
    /*  case DELETE_PRODUCT:
@@ -44,8 +47,10 @@ export default function (state = initialState, action) {
     case PRODUCT_ERROR:
       return {
         ...state,
-        error: payload,
-        loading: false
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        product: null
       };
     /* case UPDATE_PRODUCT:
       return {

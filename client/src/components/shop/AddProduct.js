@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 import { Col, Form, Button } from 'react-bootstrap';
 import { addProduct } from '../../actions/shop';
 
-const AddProduct = ({ addProduct }) => {
-  const [formData, setFormData] = useState({
+const initialState = {
     name: '',
     image_src: '',
     price: '',
     description: ''
-  });
+}
+
+const AddProduct = ( {addProduct} ) => {
+
+  const [formData, setFormData] = useState(initialState);
 
   const { name, image_src, price, description } = formData;
 
@@ -20,7 +23,8 @@ const AddProduct = ({ addProduct }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addProduct(name, image_src, price, description);
+    addProduct(formData);
+    console.log(formData);
   };
 
 
@@ -73,8 +77,13 @@ const AddProduct = ({ addProduct }) => {
 };
 
  AddProduct.propTypes = {
-  addProduct: PropTypes.func.isRequired
+  addProduct: PropTypes.func.isRequired,
+ // product: PropTypes.object.isRequired
 };
 
+/* const mapStateToProps = state => ({
+    product: state.product
+})
+ */
 
 export default connect(null, { addProduct })(AddProduct); 

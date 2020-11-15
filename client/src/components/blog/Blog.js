@@ -46,7 +46,7 @@ const Blog = () => {
               <Col sm={3} xs={12}></Col>
               <Col sm={6} xs={12}>
                 <div
-                  className='card'
+                  className='card blog'
                   style={{ borderRadius: 7, borderColor: '#f8f7fd' }}
                 >
                   <div className='card-img-top'>

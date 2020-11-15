@@ -1,37 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
+import Product from './Product';
+import { getProducts } from '../../actions/shop';
 
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
-const Shop = () => {
-    return (
-      <Fragment>
-        <Row>
-        <Spinner animation="grow"/>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-        </Row>
-        </Fragment>
+const Shop = ({ getProducts, shop: { products } }) => {
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
 
-    );
-}
+  return (
+    <Row>
+      <h1>shop</h1>
+      {products.map((product) => (
+        <Product key={product._id} product={product} />
+      ))}
+    </Row>
+  );
+};
 
-export default Shop;
+Shop.propTypes = {
+  getProducts: PropTypes.func.isRequired,
+  shop: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  shop: state.shop
+});
+
+export default connect(mapStateToProps, { getProducts })(Shop);

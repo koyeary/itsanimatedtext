@@ -4,7 +4,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const Product = require('../../models/Product');
-
+const checkObjectId = require('../../middleware/checkObjectId');
 
 // @route    GET api/shop/
 // @desc     Get all products
@@ -23,9 +23,9 @@ router.get('/', async (req, res) => {
 // @route    GET api/shop/
 // @desc     Get product in this shop
 // @access   Public
-router.get('/:id', async (req, res) => {
+router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
   try {
-    const product = await Product.findOne({ id: req.body.id });
+    const product = await Product.findById(req.params.id);
 
     if (!product) {
       return res.status(400).json({

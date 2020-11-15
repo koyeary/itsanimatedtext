@@ -1,37 +1,27 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
 
-import { Row, Col } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
-const Shop = () => {
-    return (
-      <Fragment>
-        <Row>
-        <Spinner animation="grow"/>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-          <Col >
-            <img src="//unsplash.it/300" alt="" />
-          </Col>
-        </Row>
-        </Fragment>
+const Product = ( { product } ) => {
+  console.log(  product.name );
+  return (
+    <Fragment>
+      <Col>
+      <Card className="mx-1 my-4" key={product._id} style={{border:'none'}}>
+        <Card.Img variant='top' src={product.image} />
+        <Card.Body>
+          <Card.Text>
+            {product.name} /{' '} 
+            {`$${product.price}.00`}<br/>
+            {product.description}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      </Col>
+    </Fragment>
+  );
+};
 
-    );
-}
 
-export default Shop;
+
+export default Product;

@@ -21,7 +21,6 @@ const Blog = () => {
       const tumblr = res.data;
 
       setPosts(tumblr.response.posts);
-      console.log(tumblr.response.posts);
     } catch (err) {
       console.error(err);
     }

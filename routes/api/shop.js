@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 // @route    GET api/shop/
 // @desc     Get product in this shop
 // @access   Public
-router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -84,7 +84,7 @@ router.post(
 // @desc     Update a product
 // @access   Private
 router.put(
-  '/admin',
+  '/admin/:id',
   [
     auth,
     [

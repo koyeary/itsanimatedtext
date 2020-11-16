@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
   product: {
-    type: Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'product'
   },
   name: {
     type: String,

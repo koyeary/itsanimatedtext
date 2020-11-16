@@ -9,13 +9,13 @@ import { Row } from 'react-bootstrap';
 const Shop = ({ getProducts, shop: { products } }) => {
   useEffect(() => {
     getProducts();
-  }, [getProducts]);
+  });
 
   return (
     <Row>
       <h1>shop</h1>
       {products.map((product) => (
-        <Product key={product._id} product={product} />
+        <Product key={product._id} product={product} image={product.url} />
       ))}
     </Row>
   );

@@ -9,13 +9,13 @@ import { addProduct } from '../../actions/shop';
 const AddProduct = ({ addProduct }) => {
     const initialState = {
         name: '',
-        image_src: '',
         price: '',
-        description: ''
+        description: '',
+        url: ''
     }
   const [formData, setFormData] = useState(initialState);
 
-  const { name, image_src, price, description } = formData;
+  const { name, price, description , url } = formData;
 
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -41,12 +41,12 @@ const AddProduct = ({ addProduct }) => {
 
         <Form.Group as={Col}>
           <Form.Label>Image</Form.Label>
-          <Form.Control name='image_src'
-            value={image_src}
+          <Form.Control name='url'
+             value={url}
             onChange={onChange}
             placeholder='Image File'
             required
-          />
+          /> 
         </Form.Group>
       </Form.Row>
 

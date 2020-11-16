@@ -1,6 +1,6 @@
-const express = require('express');
-//const config = require('config');
+const express = require('express');;
 const router = express.Router();
+const auth = require('../../middleware/auth')
 const { check, validationResult } = require('express-validator');
 
 const Image = require('../../models/Image');
@@ -82,18 +82,16 @@ router.get('/', async (req, res) => {
 // @route    GET api/shop/image/product/:product_id
 // @desc     Get image by product ID
 // @access   Public
-router.get(
-  '/product/:product_id',
-  checkObjectId('product_id'),
-  async ({ params: { product_id } }, res) => {
+router.get('/shop/images/:id', async (req, res) => {
+
     try {
-      const image = await Profile.findOne({
-        product: product_id
-      }).populate('product', ['name', 'avatar']);
+      const image = await Image.findOne({
+        product: req.product.id
+      });
 
       if (!image) return res.status(400).json({ msg: 'Image not found' });
 
-      return res.json(profile);
+      return res.json(image);
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({ msg: 'Server error' });

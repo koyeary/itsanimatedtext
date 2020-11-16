@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react';
-
 import { Card, Col } from 'react-bootstrap';
 
 const Product = ( { product } ) => {
-  console.log(  product.name );
+
   return (
     <Fragment>
       <Col>
       <Card className="mx-1 my-4" key={product._id} style={{border:'none'}}>
-        <Card.Img variant='top' src={product.image} />
+        <img variant='top' src={product.url} alt={product.name}/>
         <Card.Body>
           <Card.Text>
             {product.name} /{' '} 
@@ -25,3 +24,4 @@ const Product = ( { product } ) => {
 
 
 export default Product;
+

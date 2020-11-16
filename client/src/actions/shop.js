@@ -4,7 +4,7 @@ import { setAlert } from './alert';
 import {
   GET_PRODUCTS,
   PRODUCT_ERROR,
-/*   UPDATE_LIKES, */
+  UPDATE_PRODUCT,
   DELETE_PRODUCT,
   ADD_PRODUCT,
   GET_PRODUCT
@@ -27,14 +27,14 @@ export const getProducts = () => async dispatch => {
   }
 };
 
-// Add like
-/* export const addLike = id => async dispatch => {
+// Update product
+export const updateProduct = id => async dispatch => {
   try {
-    const res = await api.put(`/api/products/like/${id}`);
+    const res = await api.put(`/api/shop/admin/${id}`);
 
     dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
+      type: UPDATE_PRODUCT,
+      payload: { id, product: res.data }
     });
   } catch (err) {
     dispatch({
@@ -44,22 +44,6 @@ export const getProducts = () => async dispatch => {
   }
 };
 
-// Remove like
-export const removeLike = id => async dispatch => {
-  try {
-    const res = await api.put(`/api/products/unlike/${id}`);
-
-    dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
-    });
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-}; */
 
 // Delete 
 export const deleteProduct = id => async dispatch => {
@@ -89,7 +73,7 @@ export const addProduct = formData => async dispatch => {
   };
 
   try {
-    const res = await api.post('/shop', formData, config);
+    const res = await api.post('/shop/admin', formData, config);
 
     dispatch({
       type: ADD_PRODUCT,

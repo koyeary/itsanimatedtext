@@ -49,7 +49,7 @@ router.post(
     auth,
     [
       check('name', 'Name is required'),
-      check('image_src', 'Image source is required'),
+      check('url', 'Url source is required'),
       check('price', 'Price is required')
         .not()
         .isEmpty()
@@ -65,8 +65,8 @@ router.post(
     try {
       const newProduct = new Product({
         name: req.body.name,
-        image_src: req.body.image_src,
         price: req.body.price,
+        url: req.body.url,
         description: req.body.description
       });
 
@@ -89,7 +89,7 @@ router.put(
     auth,
     [
       check('name', 'Name is required'),
-      check('image_src', 'Image source is required'),
+      check('url', 'Image source is required'),
       check('price', 'Price is required')
         .not()
         .isEmpty()
@@ -102,7 +102,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, image_src, price, description } = req.body;
+    const { name, url, price, description } = req.body;
 
     try {
       const product = await Product.findOne({ _id: req.body.id });
@@ -112,7 +112,7 @@ router.put(
         });
       }
       (product.name = name),
-        (product.image_src = image_src),
+        (product.url = url),
         (product.price = price),
         (product.description = description);
 
@@ -127,7 +127,7 @@ router.put(
 // @route    DELETE api/shop
 // @desc     Delete a product
 // @access   Private
-router.delete('/admin', auth, async (req, res) => {
+router.delete('/admin/:id', auth, async (req, res) => {
   try {
     await Product.findOneAndRemove({ id });
   } catch (err) {

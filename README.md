@@ -1,9 +1,9 @@
 # Tumblr & E-Commerce Platform
 ## Description
-RESTful ecommerce, blogging and content-management API using MERN+Redux.
+RESTful e-commerce, blogging and content-management API using MERN+Redux.
 
 An in-development project for a pioneering, viral digital-media artist, this application fulfills the client's unique grab-bag of needs, saving the client significant time and money: 
-* a full-service ecommerce platform (inventory-management and storefront)
+* a full-service ecommerce platform (inventory-management, accounting and storefront)
 * Ability to post to - and interact with - tumblr and twitter.
 * Presskit and special projects
 * Focused access to the constant stream of custom requests (a fundamental requirement of her business) that typically come from all three of these sources.

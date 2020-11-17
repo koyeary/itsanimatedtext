@@ -1,4 +1,4 @@
-# Ecommerce and Tumblr application using React/Redux
+# Tumblr & E-Commerce Platform
 ## Description
 RESTful ecommerce, blogging and content-management API using MERN+Redux.
 

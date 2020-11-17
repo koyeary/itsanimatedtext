@@ -2,7 +2,7 @@
 ## Description
 RESTful ecommerce, blogging and content-management API using MERN+Redux.
 
-An in-development project for a pioneering viral digital-media artist, this is application fulfills the client's unique grab-bag of needs, saving the client significant time and money: 
+An in-development project for a pioneering, viral digital-media artist, this application fulfills the client's unique grab-bag of needs, saving the client significant time and money: 
 * a full-service ecommerce platform (inventory-management and storefront)
 * Ability to post to - and interact with - tumblr and twitter.
 * presskit

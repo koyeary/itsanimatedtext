@@ -1,10 +1,12 @@
-# Ecommerce and Tumblr App using React/Redux
+# Ecommerce and Tumblr application using React/Redux
 ## Description
-In-development project for a pioneering viral digital-media artist, this is a MERN/Redux application that fulfills the client's unique grab-bag of needs, saving the client significant time and money: 
-* a full-service ecommerce platform
-* tumblr and twitter posting and interaction capabilities
+RESTful ecommerce, blogging and content-management API using MERN+Redux.
+
+An in-development project for a pioneering viral digital-media artist, this is application fulfills the client's unique grab-bag of needs, saving the client significant time and money: 
+* a full-service ecommerce platform (inventory-management and storefront)
+* Ability to post to - and interact with - tumblr and twitter.
 * presskit
-* access to the constant stream of custom requests (a fundamental requirement of her business).
+* Focused access to the constant stream of custom requests (a fundamental requirement of her business) that typically come from all three of these sources.
 
 
 ## API Credits:

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Product from './Product';
@@ -15,7 +15,9 @@ const Shop = ({ getProducts, shop: { products } }) => {
     <Row>
       <h1>shop</h1>
       {products.map((product) => (
-        <Product key={product._id} product={product} image={product.url} />
+        <Fragment>
+          <Product key={product._id} product={product} />
+        </Fragment>
       ))}
     </Row>
   );

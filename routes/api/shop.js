@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 // @route    GET api/shop/
 // @desc     Get product in this shop
 // @access   Public
@@ -49,7 +48,8 @@ router.post(
     auth,
     [
       check('name', 'Name is required'),
-      check('url', 'Url source is required'),
+      check('category', 'Category is required'),
+      check('main_image', 'main_image source is required'),
       check('price', 'Price is required')
         .not()
         .isEmpty()
@@ -65,9 +65,10 @@ router.post(
     try {
       const newProduct = new Product({
         name: req.body.name,
-        price: req.body.price,
-        url: req.body.url,
-        description: req.body.description
+        category: req.body.category,
+        main_image: req.body.main_image,
+        alt_views: req.body.alt_views,
+        price: req.body.price
       });
 
       const product = await newProduct.save();
@@ -89,7 +90,7 @@ router.put(
     auth,
     [
       check('name', 'Name is required'),
-      check('url', 'Image source is required'),
+      check('main_image', 'Image source is required'),
       check('price', 'Price is required')
         .not()
         .isEmpty()
@@ -102,7 +103,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, url, price, description } = req.body;
+    const { name, category, main_image, alt_views, price } = req.body;
 
     try {
       const product = await Product.findOne({ _id: req.body.id });
@@ -111,10 +112,11 @@ router.put(
           msg: 'Product not found: there is no product matching this id'
         });
       }
-      (product.name = name),
-        (product.url = url),
-        (product.price = price),
-        (product.description = description);
+        (product.name = name),
+        (product.category = category),
+        (product.main_image = main_image),
+        (product.alt_views = alt_views),
+        (product.price = price);
 
       await product.save();
     } catch (err) {
@@ -124,6 +126,7 @@ router.put(
   }
 );
 
+
 // @route    DELETE api/shop
 // @desc     Delete a product
 // @access   Private
@@ -132,9 +135,8 @@ router.delete('/admin/:id', auth, async (req, res) => {
     await Product.findOneAndRemove({ id });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error')
+    res.status(500).send('Server Error');
   }
 });
-
 
 module.exports = router;

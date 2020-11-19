@@ -52,9 +52,7 @@ export default function (state = initialState, action) {
     case UPDATE_IMAGE:
       return {
         ...state,
-        images: state.images.map((image) =>
-          image._id === payload.id ? { ...image, likes: payload.likes } : image
-        ),
+        error: payload,
         loading: false
       };
     default:

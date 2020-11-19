@@ -13,6 +13,9 @@ const ImageSchema = new Schema({
   url: {
     type: String,
     required: true
+  },
+  alt_views: {
+    type: Array
   }
 });
 

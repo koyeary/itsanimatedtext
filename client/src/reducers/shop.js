@@ -2,7 +2,7 @@
 import {
   GET_PRODUCTS,
   PRODUCT_ERROR,
-  UPDATE_LIKES,
+  UPDATE_PRODUCT,
   DELETE_PRODUCT,
   ADD_PRODUCT,
   GET_PRODUCT
@@ -49,12 +49,10 @@ export default function(state = initialState, action) {
         error: payload,
         loading: false
       };
-    case UPDATE_LIKES:
+    case UPDATE_PRODUCT:
       return {
         ...state,
-        products: state.products.map(product =>
-          product._id === payload.id ? { ...product, likes: payload.likes } : product
-        ),
+        error: payload,
         loading: false
       };
     default:

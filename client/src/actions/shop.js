@@ -101,7 +101,7 @@ export const getProduct = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { status: err.response.status }
     });
   }
 };

@@ -4,28 +4,39 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navbar, Nav } from 'react-bootstrap';
 import { logout } from '../../actions/auth';
+import Cart from '../shop/pages/Cart';
 
 const Navigation = ({ auth: { isAuthenticated }, logout }) => {
   const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
 
   const logOut = (
-    <Fragment>
+    <span className="justify-content-end">
       <i className='fas fa-user-minus' aria-hidden='true' />
-    </Fragment>
+    </span>
   );
 
-  const checkout = (
+  const guestLinks = (
     <Fragment>
+             <Nav.Item>
+          <Nav.Link>
+            <Link to='/contact'>Request a gif</Link>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <Link to='/contact'>Submit a Post</Link>
+          </Nav.Link>
+        </Nav.Item>
       <Nav.Item>
         <Nav.Link>
-          <Link to='/cart'>{ cart }</Link>
+          <Link to='/cart'>{cart}</Link>
         </Nav.Link>
       </Nav.Item>
     </Fragment>
   );
 
   const authLinks = (
-    <Fragment >
+    <Fragment>
       <Nav.Item>
         <Nav.Link>
           <Link to='/makepost'>Make Post</Link>
@@ -38,8 +49,8 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
-          <a onClick={ logout } href='#!'>
-            { logOut }
+          <a onClick={logout} href='#!'>
+            {logOut}
           </a>
         </Nav.Link>
       </Nav.Item>
@@ -47,16 +58,13 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
   );
 
   return (
-    <Navbar className='bg-light justify-content-end sticky-top'>
+    <Navbar className='bg-light justify-content-center sticky-top'>
       <Nav>
         <Nav.Item>
           <Nav.Link>
-            <Link to='/'>Home</Link>
+            <Link to='/blog'>Blog</Link>
           </Nav.Link>
         </Nav.Item>
-        <Nav.Link>
-          <Link to='/blog'>Blog</Link>
-        </Nav.Link>
         <Nav.Item>
           <Nav.Link>
             <Link to='/shop'>Shop</Link>
@@ -67,13 +75,16 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
         </Nav.Link>
         <Nav.Item>
           <Nav.Link>
-            <Link to='/contact'>Contact</Link>
+            <Link to='/faq'>FAQ</Link>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <Link to='/blog'>Wallpapers</Link>
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <Nav>
-        { isAuthenticated ? authLinks : checkout }
-      </Nav>
+      <Nav>{isAuthenticated ? authLinks : guestLinks}</Nav>
     </Navbar>
   );
 };

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/routing/Routes';
-import Home from './components/Home'; 
+import Shop from './components/shop/Shop'; 
 import Navigation from './components/navs/Navigation';
 import Header from './components/navs/Header';
 import './App.css';
@@ -34,7 +34,7 @@ const App = () => {
           <Header/>
           <Navigation />
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Shop} />
             <Route component={Routes} />
           </Switch>
         </Fragment>

@@ -4,7 +4,7 @@ import About from '../about/About';
 import Contact from '../contact/Contact';
 import Shop from '../shop/Shop';
 import Blog from '../blog/Blog';
-import Admin from '../auth/Admin';
+import Admin from '../admin/Admin';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Details from '../shop/pages/Details';
@@ -16,7 +16,6 @@ import Details from '../shop/pages/Details';
 //import Holiday from '../shop/pages/Holiday';
 //import Cart from '../shop/Cart';
 //import MakePost from '../blog/MakePost';
-import AddProduct from '../shop/ProductForm';
 import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = (props) => {
@@ -39,7 +38,6 @@ const Routes = (props) => {
         <Route path='/posters' component={Posters} />
         <Route path='/holiday' component={Holiday} />
        <Route exact path='/cart' component={Cart} />    */}
-        <PrivateRoute exact path='/shop/edit' component={AddProduct} />
       </Switch>
     </Fragment>
   );

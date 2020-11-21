@@ -39,17 +39,18 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
     <Fragment>
       <Nav.Item>
         <Nav.Link>
-          <Link to='/makepost'>Make Post</Link>
+          <Link to='/makepost'>Post</Link>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
-          <Link to='/shop/edit'>Edit Shop</Link>
+          <Link to='/admin'>Dashboard</Link>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <a onClick={logout} href='#!'>
+            Logout Admin{' '}
             {logOut}
           </a>
         </Nav.Link>
@@ -60,14 +61,14 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
   return (
     <Navbar className='bg-light justify-content-center sticky-top'>
       <Nav>
-        <Nav.Item>
+      <Nav.Item>
           <Nav.Link>
-            <Link to='/blog'>Blog</Link>
+            <Link to='/shop'>Shop</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>
-            <Link to='/shop'>Shop</Link>
+            <Link to='/blog'>Blog</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Link>

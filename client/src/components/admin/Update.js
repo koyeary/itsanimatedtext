@@ -1,4 +1,66 @@
-import React, { Fragment, useState } from 'react';
+/* import React from 'react';
+import { Form, Button } from 'react-bootstrap';
+
+const Update = () => {
+  return (
+    <Form onSubmit={onSubmit}>
+      <Form.Group>
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          className='form-control-lg'
+          name='name'
+          value={name}
+          onChange={onChange}
+          placeholder='Enter item name'
+          required
+        />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>category</Form.Label>
+        <Form.Control
+          className='form-control-lg'
+          name='category'
+          value={category}
+          onChange={onChange}
+          placeholder='Ex: hat'
+        />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Price</Form.Label>
+        <Form.Control
+          className='form-control-lg'
+          name='price'
+          value={price}
+          onChange={onChange}
+          placeholder='20.00'
+          required
+        />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Image</Form.Label>
+        <Form.Control
+          className='form-control-lg'
+          name='main_image'
+          value={main_image}
+          onChange={onChange}
+          placeholder='Image File'
+          required
+        />
+      </Form.Group>
+
+      <Button variant='primary' onSubmit={onSubmit} type='submit'>
+        Submit
+      </Button>
+    </Form>
+  );
+};
+
+export default Update; */
+
+/* import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
@@ -88,4 +150,4 @@ ProductForm.propTypes = {
   addProduct: PropTypes.func.isRequired
 };
 
-export default connect(null, { addProduct })(ProductForm);
+export default connect(null, { addProduct })(ProductForm); */

@@ -40,7 +40,7 @@ export default function(state = initialState, action) {
     case DELETE_PRODUCT:
       return {
         ...state,
-        products: state.products.filter(product => product._id !== payload),
+        product: null,
         loading: false
       };
     case PRODUCT_ERROR:

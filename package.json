@@ -27,9 +27,9 @@
     "config": "^3.3.2",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
-    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.11",
+    "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-tumblr": "^0.1.2",
     "stripe": "^8.121.0"

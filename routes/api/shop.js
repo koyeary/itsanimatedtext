@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const Product = require('../../models/Product');
+const User = require('../../models/User');
 const checkObjectId = require('../../middleware/checkObjectId');
 
 // @route    GET api/shop/
@@ -130,11 +131,21 @@ router.put(
 // @route    DELETE api/shop
 // @desc     Delete a product
 // @access   Private
-router.delete('/admin/:id', auth, async (req, res) => {
+router.delete('/admin/:id', [auth, checkObjectId('id')], async (req, res) => {
   try {
-    await Product.findOneAndRemove({ id });
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ msg: 'Product not found' });
+    }
+
+    await product.remove();
+
+    res.json('Product removed');
   } catch (err) {
+
     console.error(err.message);
+    
     res.status(500).send('Server Error');
   }
 });

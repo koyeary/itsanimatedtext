@@ -2,20 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
-  product: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'product'
-  },
-  name: {
+  imageName: {
     type: String,
     required: true
   },
-  url: {
+  imageData: {
     type: String,
     required: true
-  },
-  alt_views: {
-    type: Array
   }
 });
 

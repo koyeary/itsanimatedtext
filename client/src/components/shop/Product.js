@@ -22,7 +22,7 @@ const Product = ({ product }) => {
           <Card.Footer className='text-center'>
             {product.name}
             <br />
-            {product.price}
+            ${product.price}.00
           </Card.Footer>
         </Card>
       </Col>

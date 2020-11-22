@@ -27,9 +27,9 @@ export const getProducts = () => async (dispatch) => {
 };
 
 // Update product
-export const updateProduct = (id) => async (dispatch) => {
+export const updateProduct = (id, formData) => async (dispatch) => {
   try {
-    const res = await api.put(`/shop/admin/${id}`);
+    const res = await api.put(`/shop/admin/${id}`, formData);
 
     dispatch({
       type: UPDATE_PRODUCT,

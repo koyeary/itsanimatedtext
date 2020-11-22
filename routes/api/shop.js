@@ -4,8 +4,8 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const Product = require('../../models/Product');
-const User = require('../../models/User');
-const checkObjectId = require('../../middleware/checkObjectId');
+//const User = require('../../models/User');
+//const checkObjectId = require('../../middleware/checkObjectId');
 
 // @route    GET api/shop/
 // @desc     Get all products
@@ -91,8 +91,9 @@ router.put(
     auth,
     [
       check('name', 'Name is required'),
-      check('main_image', 'Image source is required'),
-      check('price', 'Price is required')
+      //check('main_image', 'Image source is required'),
+      check('price', 'Price is required'),
+      check('category', 'Category is required')
         .not()
         .isEmpty()
         .custom((value, { req }) => (req.body.to ? value < req.body.to : true))
@@ -114,10 +115,10 @@ router.put(
         });
       }
         (product.name = name),
-        (product.category = category),
-        (product.main_image = main_image),
-        (product.alt_views = alt_views),
         (product.price = price);
+        (product.category = category),
+       // (product.main_image = main_image),
+       // (product.alt_views = alt_views),
 
       await product.save();
     } catch (err) {
@@ -131,7 +132,7 @@ router.put(
 // @route    DELETE api/shop
 // @desc     Delete a product
 // @access   Private
-router.delete('/admin/:id', [auth, checkObjectId('id')], async (req, res) => {
+router.delete('/admin/:id', auth, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -147,7 +148,7 @@ router.delete('/admin/:id', [auth, checkObjectId('id')], async (req, res) => {
     console.error(err.message);
     
     res.status(500).send('Server Error');
-  }
+  } 
 });
 
 module.exports = router;

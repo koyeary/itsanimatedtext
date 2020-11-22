@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
-import { Col, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { addProduct } from '../../actions/shop';
 
 const ProductForm = ({ addProduct }) => {
@@ -23,7 +23,6 @@ const ProductForm = ({ addProduct }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     addProduct(formData);
-    console.log(formData);
   };
 
   const showForm = (

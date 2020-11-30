@@ -2,33 +2,57 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateProduct } from '../../actions/shop';
+import TableForm from './TableForm';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
 const Update = ({ updateProduct, product }) => {
-  const initialState = {
-    name: product.name,
-    price: product.price,
-    category: product.category,
-    main_image: product.main_image,
-    id: product._id
+  const [toggleInput, setToggleInput] = useState(false);
+  //const [toggleForm, setToggleForm] = useState(false);
+
+  const handleClick = (e) => {
+    const id = product._id;
+
+    e.preventDefault();
+    console.log(id);
+    toggleInput ? setToggleInput(false) : setToggleInput(true);
   };
-
-  const [formData, setFormData] = useState(initialState);
-  const [toggleInput, setToggleInput] = useState('');
-
-  const { name, price, category } = formData;
-
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
     <tr>
-      <th scope='row'><Button><i class='far fa-edit' /></Button></th>
+      <th scope='row'><Button data-toggle='button' onClick={handleClick}>
+          {toggleInput ?   (<i class='far fa-save' />
+        ) : (
+            <i class='far fa-edit' />)}
+          </Button></th>
       <td>{product.name}</td>
-      <td >{product.price}</td>
-      <td >{product.category}</td>
+      <td>${product.price}.00</td>
+      <td>{product.category}</td>
     </tr>
   );
+
+  /* return (
+    
+    <tr>
+      <th scope='row'>
+        
+          <Button data-toggle='button'>
+          {toggleInput ?   (<i class='far fa-save' />
+        ) : (
+            <i class='far fa-edit' />)}
+          </Button>
+        
+      </th>
+      <td name='name' onClick={setToggleForm(true)}>
+        {toggleForm ? (<TableForm product={product} />) : (product.name)}
+      </td>
+      <td name='price' onClick={setToggleForm(true)}>
+        {toggleForm ? (<TableForm product={product} />) : (product.price)}
+      </td>
+      <td name='category' onClick={setToggleForm(true)}>
+        {toggleForm ? (<TableForm product={product} />) : (product.category)}
+      </td>
+    </tr>
+  ); */
 };
 
 Update.propTypes = {

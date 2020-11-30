@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 //import ProductForm from '../shop/ProductForm';
-import Table from './Table';
 import Delete from './Delete';
 import Update from './Update';
 import { Container, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
@@ -17,60 +16,55 @@ const Admin = ({ getProducts, shop: { products } }) => {
   return (
     <Fragment>
       <Row>
-        <h1 className='display-2 m-5 pl-5 admin-display'>Dashboard</h1>
+        <h1 className="display-2 m-5 pl-5 admin-display">Dashboard</h1>
       </Row>
-      <Container className='my-4'>
+      <Container className="my-4">
         <Row>
           <Col>
-            <ButtonGroup className='btn-group-vertical mt-5 pt-5'>
-              <Button
-                data-toggle='button'
-                className='my-3'
-                value='add'
-                
-              >
-                <i className='fas fa-plus pr-3' />
+            <ButtonGroup className="btn-group-vertical mt-5 pt-5">
+              <Button data-toggle="button" className="my-3" value="add">
+                <i className="fas fa-plus pr-3" />
                 add item
               </Button>
               <Button
-                data-toggle='button'
-                className='my-3'
-                value='remove'
+                data-toggle="button"
+                className="my-3"
+                value="remove"
                 onClick={(e) => setToggleTable(true)}
               >
-                <i className='fas fa-minus pr-3' />
+                <i className="fas fa-minus pr-3" />
                 delete item
               </Button>
               <Button
-                data-toggle='button'
-                className='my-3'
-                value='update'
+                data-toggle="button"
+                className="my-3"
+                value="update"
                 onClick={(e) => setToggleTable(false)}
               >
-                <i className='far fa-edit pr-3' />
+                <i className="far fa-edit pr-3" />
                 update item
               </Button>
             </ButtonGroup>
           </Col>
           <Col>
-            {/* <Table/> */}
-            <table className='table table-hover table-wrapper table-scrollbar shadow'>
+            <table className="table table-hover table-wrapper table-scrollbar shadow">
               <thead>
                 <tr>
-                  <th scope='col'></th>
-                  <th scope='col'>Name</th>
-                  <th scope='col'>Price</th>
-                  <th scope='col'>Category</th>
+                  <th scope="col"></th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Category</th>
                 </tr>
               </thead>
 
               <tbody>
                 {products.map((product) => (
                   <Fragment>
-                    {toggleTable ? 
-                    <Delete key={product._id} product={product} /> 
-                    : 
-                    <Update key={product._id} product={product} /> }
+                     {toggleTable ? ( 
+                      <Delete key={product._id} product={product} />
+                     ) : (
+                      <Update key={product._id} product={product} />
+                    )} 
                   </Fragment>
                 ))}
               </tbody>
@@ -82,7 +76,7 @@ const Admin = ({ getProducts, shop: { products } }) => {
   );
 };
 
-Table.propTypes = {
+Admin.propTypes = {
   getProducts: PropTypes.func.isRequired,
   shop: PropTypes.object.isRequired
 };

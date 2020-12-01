@@ -1,63 +1,83 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateProduct } from '../../actions/shop';
-import TableForm from './TableForm';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 const Update = ({ updateProduct, product }) => {
-  const [toggleInput, setToggleInput] = useState(false);
-  //const [toggleForm, setToggleForm] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [formData, setFormData] = useState({
+    name: product.name,
+    price: product.price,
+    category: product.category
+  });
 
-  const handleClick = (e) => {
-    const id = product._id;
+  const { name, price, category } = formData;
 
+  const handleSave = (e) => {
     e.preventDefault();
-    console.log(id);
-    toggleInput ? setToggleInput(false) : setToggleInput(true);
+
+    alert(`Would you like to update item ${product._id}, ${formData.name}?`);
+    console.log(name, price, category);
+    updateProduct(product._id, formData);
+    setEditMode(false);
   };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    setEditMode(true);
+  };
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
 
   return (
     <tr>
-      <th scope='row'><Button data-toggle='button' onClick={handleClick}>
-          {toggleInput ?   (<i class='far fa-save' />
+      <th scope='row'>
+        {editMode ? (
+          <Button
+            data-toggle='button'
+            onClick={(e) => handleSave(e)}
+            type='submit'
+          >
+            <i class='far fa-save' />
+          </Button>
         ) : (
-            <i class='far fa-edit' />)}
-          </Button></th>
-      <td>{product.name}</td>
-      <td>${product.price}.00</td>
-      <td>{product.category}</td>
+          <Button>
+            <i class='far fa-edit' onClick={(e) => handleEdit(e)} />
+          </Button>
+        )}
+      </th>
+      <td>
+        {editMode ? (
+          <Form.Control name='name' value={name} onChange={onChange} />
+        ) : (
+          `${name}`
+        )}
+      </td>
+
+      <td>
+        {editMode ? (
+          <Form.Control name='price' value={price} onChange={onChange} />
+        ) : (
+          `$${price}.00`
+        )}
+      </td>
+      <td>
+        {editMode ? (
+          <Form.Control name='category' value={category} onChange={onChange} />
+        ) : (
+          `${category}`
+        )}
+      </td>
     </tr>
   );
-
-  /* return (
-    
-    <tr>
-      <th scope='row'>
-        
-          <Button data-toggle='button'>
-          {toggleInput ?   (<i class='far fa-save' />
-        ) : (
-            <i class='far fa-edit' />)}
-          </Button>
-        
-      </th>
-      <td name='name' onClick={setToggleForm(true)}>
-        {toggleForm ? (<TableForm product={product} />) : (product.name)}
-      </td>
-      <td name='price' onClick={setToggleForm(true)}>
-        {toggleForm ? (<TableForm product={product} />) : (product.price)}
-      </td>
-      <td name='category' onClick={setToggleForm(true)}>
-        {toggleForm ? (<TableForm product={product} />) : (product.category)}
-      </td>
-    </tr>
-  ); */
 };
 
 Update.propTypes = {
-  updateProduct: PropTypes.func.isRequired,
-  shop: PropTypes.object.isRequired
+  updateProduct: PropTypes.func.isRequired
 };
 
 export default connect(null, { updateProduct })(Update);

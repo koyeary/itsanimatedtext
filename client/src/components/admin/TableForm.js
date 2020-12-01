@@ -6,13 +6,13 @@ import { getProducts } from '../../actions/shop';
 
 const TableForm = ({ product }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    category: '',
+    name: product.name,
+    price: product.price,
+    category: product.category,
     id: product._id
   });
 
-  const { name, price, category } = formData;
+  const { name, price, category, id } = formData;
 
 
   const onChange = (e) => {

@@ -52,7 +52,7 @@ export default function(state = initialState, action) {
     case UPDATE_PRODUCT:
       return {
         ...state,
-        error: payload,
+        product: payload,
         loading: false
       };
     default:

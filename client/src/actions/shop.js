@@ -28,12 +28,18 @@ export const getProducts = () => async (dispatch) => {
 
 // Update product
 export const updateProduct = (id, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   try {
-    const res = await api.put(`/shop/admin/${id}`, formData);
+    const res = await api.put(`/shop/admin/${id}`, formData, config);
 
     dispatch({
       type: UPDATE_PRODUCT,
-      payload: { id, product: res.data }
+      payload: res.data
     });
   } catch (err) {
     dispatch({

@@ -85,49 +85,33 @@ router.post(
 // @route    PUT api/shop
 // @desc     Update a product
 // @access   Private
-router.put(
-  '/admin/:id',
-  [
-    auth,
-    [
-      check('name', 'Name is required'),
-      //check('main_image', 'Image source is required'),
-      check('price', 'Price is required'),
-      check('category', 'Category is required')
-        .not()
-        .isEmpty()
-        .custom((value, { req }) => (req.body.to ? value < req.body.to : true))
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { name, category, main_image, alt_views, price } = req.body;
-
-    try {
-      const product = await Product.findOne({ _id: req.body.id });
-      if (!product) {
-        return res.status(400).json({
-          msg: 'Product not found: there is no product matching this id'
-        });
-      }
-        (product.name = name),
-        (product.price = price);
-        (product.category = category),
-        (product.main_image = main_image),
-        (product.alt_views = alt_views),
-
-      await product.save();
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
+router.put('/admin/:id', auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
-);
 
+  const { id, name, price, category } = req.body;
+
+  try {
+    const product = await Product.findOne(id);
+    if (!product) {
+      return res.status(400).json({
+        msg: 'Product not found: there is no product matching this id'
+      });
+    }
+    (product.name = name),
+    (product.price = price),
+    (product.category = category)
+/*     (product.main_image = main_image),
+    (product.alt_views = alt_views), */
+    
+      await product.save();
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 // @route    DELETE api/shop
 // @desc     Delete a product
@@ -144,11 +128,10 @@ router.delete('/admin/:id', auth, async (req, res) => {
 
     res.json('Product removed');
   } catch (err) {
-
     console.error(err.message);
-    
+
     res.status(500).send('Server Error');
-  } 
+  }
 });
 
 module.exports = router;

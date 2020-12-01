@@ -102,9 +102,8 @@ router.put('/admin/:id', auth, async (req, res) => {
     }
     (product.name = name),
     (product.price = price),
-    (product.category = category)
-/*     (product.main_image = main_image),
-    (product.alt_views = alt_views), */
+    (product.category = category),
+    (product.main_image = main_image)
     
       await product.save();
   } catch (err) {

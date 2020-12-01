@@ -16,8 +16,9 @@ const Delete = ({ deleteProduct, product }) => {
     <tr>
       <th scope='row'><Button onClick={handleClick}><i class='fas fa-minus' /></Button></th>
       <td>{product.name}</td>
-      <td>${product.price}.00</td>
       <td>{product.category}</td>
+      <td>${product.price}.00</td>
+      <td>{product.main_image}</td>
     </tr>
   );
 };

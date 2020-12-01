@@ -16,52 +16,53 @@ const Admin = ({ getProducts, shop: { products } }) => {
   return (
     <Fragment>
       <Row>
-        <h1 className="display-2 m-5 pl-5 admin-display">Dashboard</h1>
+        <h1 className='display-2 m-5 pl-5 admin-display'>Dashboard</h1>
       </Row>
-      <Container className="my-4">
+      <Container className='my-4'>
         <Row>
-          <Col>
-            <ButtonGroup className="btn-group-vertical mt-5 pt-5">
-              <ProductForm/>
+          <Col className='text-center' md={3}>
+            <ButtonGroup className='btn-group-vertical mt-5 pt-5'>
+              <ProductForm />
+
               <Button
-                data-toggle="button"
-                className="my-3"
-                value="remove"
+                className='my-3'
+                value='remove'
                 onClick={(e) => setToggleTable(true)}
               >
-                <i className="fas fa-minus pr-3" />
+                <i className='fas fa-minus pr-3' />
                 delete item
               </Button>
+
               <Button
-                data-toggle="button"
-                className="my-3"
-                value="update"
+                className='my-3'
+                value='update'
                 onClick={(e) => setToggleTable(false)}
               >
-                <i className="far fa-edit pr-3" />
+                <i className='far fa-edit pr-3' />
                 update item
               </Button>
             </ButtonGroup>
           </Col>
-          <Col>
-            <table className="table table-hover table-wrapper table-scrollbar shadow">
+          <Col md={9}>
+            <table className='table table-hover table-wrapper table-scrollbar shadow'>
               <thead>
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Category</th>
+                  <th scope='col'></th>
+                  <th scope='col'>Name</th>
+                  <th scope='col'>Category</th>
+                  <th scope='col'>Price</th>
+                  <th scope='col'>Image File</th>
                 </tr>
               </thead>
 
               <tbody>
                 {products.map((product) => (
                   <Fragment>
-                     {toggleTable ? ( 
+                    {toggleTable ? (
                       <Delete key={product._id} product={product} />
-                     ) : (
+                    ) : (
                       <Update key={product._id} product={product} />
-                    )} 
+                    )}
                   </Fragment>
                 ))}
               </tbody>

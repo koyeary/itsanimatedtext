@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateProduct } from '../../actions/shop';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Image } from 'react-bootstrap';
 
 const Update = ({ updateProduct, product }) => {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     name: product.name,
     price: product.price,
-    category: product.category
+    category: product.category,
+    image: product.main_image
   });
 
-  const { name, price, category } = formData;
+  const { name, price, category, image } = formData;
 
   const handleSave = (e) => {
     e.preventDefault();
 
     alert(`Would you like to update item ${product._id}, ${formData.name}?`);
-    console.log(name, price, category);
+    console.log(name, price, category, image);
     updateProduct(product._id, formData);
     setEditMode(false);
   };
@@ -31,7 +32,6 @@ const Update = ({ updateProduct, product }) => {
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
 
   return (
     <tr>
@@ -57,7 +57,13 @@ const Update = ({ updateProduct, product }) => {
           `${name}`
         )}
       </td>
-
+      <td>
+        {editMode ? (
+          <Form.Control name='category' value={category} onChange={onChange} />
+        ) : (
+          `${category}`
+        )}
+      </td>
       <td>
         {editMode ? (
           <Form.Control name='price' value={price} onChange={onChange} />
@@ -67,9 +73,9 @@ const Update = ({ updateProduct, product }) => {
       </td>
       <td>
         {editMode ? (
-          <Form.Control name='category' value={category} onChange={onChange} />
+          <Form.Control name='image' value={image} onChange={onChange} />
         ) : (
-          `${category}`
+          `${image}`
         )}
       </td>
     </tr>

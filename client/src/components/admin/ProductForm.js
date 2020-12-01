@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Modal } from 'react-bootstrap';
 import { addProduct } from '../../actions/shop';
 
 const ProductForm = ({ addProduct }) => {
@@ -14,8 +14,12 @@ const ProductForm = ({ addProduct }) => {
     main_image: ''
   };
   const [formData, setFormData] = useState(initialState);
+  const [show, setShow] = useState(false);
 
   const { name, price, category, main_image } = formData;
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +29,7 @@ const ProductForm = ({ addProduct }) => {
     addProduct(formData);
   };
 
-  const showForm = (
+  const formBody = (
     <Form onSubmit={onSubmit}>
       <Form.Group>
         <Form.Label>Name</Form.Label>
@@ -80,7 +84,31 @@ const ProductForm = ({ addProduct }) => {
     </Form>
   );
 
-  return <Fragment>{showForm}</Fragment>;
+  return (
+    <Fragment>
+      <Button
+        data-toggle='button'
+        className='my-3'
+        value='add'
+        onClick={handleShow}
+      >
+        <i className='fas fa-plus pr-3' />
+        add item
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add shop item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{formBody}</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleClose}>
+            close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Fragment>
+  );
 };
 
 ProductForm.propTypes = {

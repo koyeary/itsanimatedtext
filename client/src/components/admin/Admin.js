@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-//import ProductForm from '../shop/ProductForm';
+import ProductForm from './ProductForm';
 import Delete from './Delete';
 import Update from './Update';
 import { Container, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
@@ -22,10 +22,7 @@ const Admin = ({ getProducts, shop: { products } }) => {
         <Row>
           <Col>
             <ButtonGroup className="btn-group-vertical mt-5 pt-5">
-              <Button data-toggle="button" className="my-3" value="add">
-                <i className="fas fa-plus pr-3" />
-                add item
-              </Button>
+              <ProductForm/>
               <Button
                 data-toggle="button"
                 className="my-3"

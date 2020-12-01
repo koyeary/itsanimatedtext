@@ -27,6 +27,9 @@ const ProductForm = ({ addProduct }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     addProduct(formData);
+    alert(`added ${name} to shop`);
+    handleClose();
+    setFormData(initialState);
   };
 
   const formBody = (
@@ -34,11 +37,11 @@ const ProductForm = ({ addProduct }) => {
       <Form.Group>
         <Form.Label>Name</Form.Label>
         <Form.Control
-          className='form-control-lg'
-          name='name'
+          className="form-control-lg"
+          name="name"
           value={name}
           onChange={onChange}
-          placeholder='Enter item name'
+          placeholder="Enter item name"
           required
         />
       </Form.Group>
@@ -46,22 +49,22 @@ const ProductForm = ({ addProduct }) => {
       <Form.Group>
         <Form.Label>category</Form.Label>
         <Form.Control
-          className='form-control-lg'
-          name='category'
+          className="form-control-lg"
+          name="category"
           value={category}
           onChange={onChange}
-          placeholder='Ex: hat'
+          placeholder="Ex: hat"
         />
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Price</Form.Label>
         <Form.Control
-          className='form-control-lg'
-          name='price'
+          className="form-control-lg"
+          name="price"
           value={price}
           onChange={onChange}
-          placeholder='20.00'
+          placeholder="20.00"
           required
         />
       </Form.Group>
@@ -69,30 +72,35 @@ const ProductForm = ({ addProduct }) => {
       <Form.Group>
         <Form.Label>Image</Form.Label>
         <Form.Control
-          className='form-control-lg'
-          name='main_image'
+          className="form-control-lg"
+          name="main_image"
           value={main_image}
           onChange={onChange}
-          placeholder='Image File'
+          placeholder="Image File"
           required
         />
       </Form.Group>
 
-      <Button variant='primary' onSubmit={onSubmit} type='submit'>
-        Submit
-      </Button>
+      <div className="text-center">
+          <Button variant="primary" className="mx-3" onSubmit={onSubmit} type="submit">
+            Submit
+          </Button>
+          <Button variant="secondary" className="mx-3" onClick={handleClose}>
+            Close
+          </Button>
+      </div>
     </Form>
   );
 
   return (
     <Fragment>
       <Button
-        data-toggle='button'
-        className='my-3'
-        value='add'
+        data-toggle="button"
+        className="my-3"
+        value="add"
         onClick={handleShow}
       >
-        <i className='fas fa-plus pr-3' />
+        <i className="fas fa-plus pr-3" />
         add item
       </Button>
 
@@ -101,11 +109,6 @@ const ProductForm = ({ addProduct }) => {
           <Modal.Title>Add shop item</Modal.Title>
         </Modal.Header>
         <Modal.Body>{formBody}</Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </Fragment>
   );

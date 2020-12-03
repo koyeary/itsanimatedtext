@@ -4,32 +4,33 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navbar, Nav } from 'react-bootstrap';
 import { logout } from '../../actions/auth';
-import Cart from '../shop/pages/Cart';
+import CheckoutForm from '../shop/stripe/CheckoutForm';
 
 const Navigation = ({ auth: { isAuthenticated }, logout }) => {
-  const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
+  //const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
 
   const logOut = (
-    <span className="justify-content-end">
+    <span className='justify-content-end'>
       <i className='fas fa-user-minus' aria-hidden='true' />
     </span>
   );
 
   const guestLinks = (
     <Fragment>
-             <Nav.Item>
-          <Nav.Link>
-            <Link to='/contact'>Request a gif</Link>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <Link to='/contact'>Submit a Post</Link>
-          </Nav.Link>
-        </Nav.Item>
       <Nav.Item>
         <Nav.Link>
-          <Link to='/cart'>{cart}</Link>
+          <Link to='/contact'>Request a gif</Link>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <Link to='/contact'>Submit a Post</Link>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <CheckoutForm/>
+          {/* <Link to='/cart'>{cart}</Link> */}
         </Nav.Link>
       </Nav.Item>
     </Fragment>
@@ -50,8 +51,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
       <Nav.Item>
         <Nav.Link>
           <a onClick={logout} href='#!'>
-            Logout Admin{' '}
-            {logOut}
+            Logout Admin {logOut}
           </a>
         </Nav.Link>
       </Nav.Item>
@@ -61,7 +61,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
   return (
     <Navbar className='bg-light justify-content-center sticky-top'>
       <Nav>
-      <Nav.Item>
+        <Nav.Item>
           <Nav.Link>
             <Link to='/shop'>Shop</Link>
           </Nav.Link>

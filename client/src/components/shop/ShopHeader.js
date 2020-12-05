@@ -2,8 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
-const ShopHeader = ({ auth: { isAuthenticated }, logout }) => {
-  const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
+const ShopHeader = () => {
 
   return (
     <Fragment>

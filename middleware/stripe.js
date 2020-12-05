@@ -1,4 +1,4 @@
-/* const passport       = require('passport');
+/*const passport       = require('passport');
 const User           = require('../models/User');
 const TumblrStrategy = require('passport-tumblr').Strategy;
 const config         = require('config');

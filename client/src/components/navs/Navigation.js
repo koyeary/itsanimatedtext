@@ -24,7 +24,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
-          <Link to='/contact'>Submit a Post</Link>
+          <Link to='/contact'>Contact</Link>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>

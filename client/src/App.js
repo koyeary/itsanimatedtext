@@ -6,7 +6,6 @@ import Routes from './components/routing/Routes';
 import Shop from './components/shop/Shop';
 import Navigation from './components/navs/Navigation';
 import Header from './components/navs/Header';
-//import CheckoutForm from './components/shop/stripe/CheckoutForm';
 import './App.css';
 
 // Redux

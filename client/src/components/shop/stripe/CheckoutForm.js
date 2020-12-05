@@ -6,60 +6,46 @@ import { Modal, Button } from 'react-bootstrap';
 //import CardSection from './CardSection';
 import './CheckoutFormStyle.css';
 
-export default function CheckoutForm() {
-  const [show, setShow] = useState(false);
-
+const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
-
   const handleSubmit = async (event) => {
-    // We don't want to let default form submission happen here,
-    // which would refresh the page.
+    // Block native form submission.
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
+      // Stripe.js has not loaded yet. Make sure to disable
+      // form submission until Stripe.js has loaded.
       return;
     }
 
-    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: 'Jenny Rosen'
-        }
-      }
+    // Get a reference to a mounted CardElement. Elements knows how
+    // to find your CardElement because there can only ever be one of
+    // each type of element.
+    const cardElement = elements.getElement(CardElement);
+
+    // Use your card Element with other Stripe.js APIs
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
     });
 
-    if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+    if (error) {
+      console.log('[error]', error);
     } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === 'succeeded') {
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
-      }
+      console.log('[PaymentMethod]', paymentMethod);
     }
   };
 
-  const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
-
   return (
-    <Fragment>
-        <h1>Checkout - dev</h1>
-          <form onSubmit={handleSubmit}>
-            {/* <CardSection /> */}
-            <CardElement/>
-            <button disabled={!stripe}>Confirm order</button>
-          </form>
-    </Fragment>
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit" disabled={!stripe}>
+        Pay
+      </button>
+    </form>
   );
-}
+};
+
+export default CheckoutForm;

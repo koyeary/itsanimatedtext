@@ -1,6 +1,7 @@
 const express   = require('express');
 const connectDB = require('./config/db');
 const path      = require('path');
+const routes    = require('./routes');
 
 const app = express();
 
@@ -10,11 +11,13 @@ connectDB();
 // Middleware
 app.use(express.json());
 
-// Define Routes
-app.use('/api/auth',  require('./routes/api/auth'));
+// API and View routes
+app.use(routes);
+
+/* app.use('/api/auth',  require('./routes/api/auth'));
 app.use('/api/shop',  require('./routes/api/shop'));
-//app.use('/api/stripe', require('/routes/api/stripe'));
-app.use('/api/uploads', require('./routes/api/uploads'));
+app.use('/api/stripe', require('/routes/api/stripe'));
+app.use('/api/uploads', require('./routes/api/uploads')); */
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

@@ -1,11 +1,9 @@
- const express   = require('express');
-const router    = express.Router();
+ const router   = require('express').Router();
 const stripe = require('stripe')('sk_test_51H5LHsBHBGQzSzD9lnlwfiEngrKrGOJ3rmVQ4GSrtL1IrqNmQyTO4oZQW66EaL2l9lYOFbrzOVHeQizjDTo8w2qz00BgzMQuaS');
 
-// @route    POST api/stripe/create-checkout-session
+// @route    POST api/stripe/create-payment-intent
 // @desc     Make a payment
 // @access   Public
-
 router.post("/create-payment-intent", async (req, res) => {
     const { items } = req.body;
     // Create a PaymentIntent with the order amount and currency
@@ -18,28 +16,30 @@ router.post("/create-payment-intent", async (req, res) => {
     });
   });
 
-/*router.post('/stripe/charge', async (req, res) => {
-    try {
-        const 
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-})
- router.post('/payments/create', async (req, res) => {
-    try {
-        const { amount, shipping } = req.body;
-        const paymentIntent = await stripe.paymentIntents.create({
-            shipping,
-            amount,
-            currency: 'usd'
-        });
+// @route    POST api/stripe/create-checkout-session
+// @desc     Check out cart
+// @access   Public
+router.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'T-shirt',
+            },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: 'https://example.com/success',
+      cancel_url: 'https://example.com/cancel',
+    });
+  
+    res.json({ id: session.id });
+  });
 
-        res.send(paymentIntent.client_secret);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-}) 
-
-module.exports = router; */
+module.exports = router;

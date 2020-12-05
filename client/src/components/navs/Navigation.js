@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navbar, Nav } from 'react-bootstrap';
 import { logout } from '../../actions/auth';
-import CheckoutForm from '../shop/stripe/CheckoutForm';
+//import CheckoutForm from '../shop/stripe/CheckoutForm';
 
 const Navigation = ({ auth: { isAuthenticated }, logout }) => {
-  //const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
+  const cart = <i className='fa fa-shopping-cart' aria-hidden='true' />;
 
   const logOut = (
     <span className='justify-content-end'>
@@ -29,8 +29,8 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
-          <CheckoutForm/>
-          {/* <Link to='/cart'>{cart}</Link> */}
+         {/*  <CheckoutForm /> */}
+          <Link to='/cart'>{cart}</Link> 
         </Nav.Link>
       </Nav.Item>
     </Fragment>

@@ -9,7 +9,7 @@ import Admin from '../admin/Admin';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Details from '../shop/pages/Details';
-import CheckoutForm from '../shop/stripe/CheckoutForm';
+import Checkout from '../shop/stripe/Checkout';
 //import Caps from '../shop/pages/Caps';
 //import Bestsellers from '../shop/pages/Bestsellers';
 //import Shirts from '../shop/pages/Shirts';
@@ -32,7 +32,7 @@ const Routes = (props) => {
         <Route path='/register' component={Register} />
         <Route path='/private/login' component={Login} />
         <Route path='/details' component={Details} />
-        <Route path='/checkout' component={CheckoutForm}/>
+        <Route path='/checkout' component={Checkout}/>
         <PrivateRoute exact path='/admin' component={Admin} />
         {/* <Route path='/caps' component={Caps} />
         <Route path='/bestsellers' component={Bestsellers} />

@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const multer = require('multer');
 //const auth = require('../../middleware/auth');
 //const config = require('config');

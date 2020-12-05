@@ -44,9 +44,6 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Shop} />
             <Route component={Routes} />
-{/*             <Elements stripe={stripePromise}>
-              <Route path='/checkout' component={CheckoutForm} />
-            </Elements> */}
           </Switch>
         </Fragment>
       </Router>

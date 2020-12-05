@@ -6,7 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 //import CardSection from './CardSection';
 import './CheckoutFormStyle.css';
 
-export default function CheckoutForm() {
+export default function Cart() {
   const [show, setShow] = useState(false);
 
   const stripe = useStripe();
@@ -54,12 +54,22 @@ export default function CheckoutForm() {
 
   return (
     <Fragment>
-        <h1>Checkout - dev</h1>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cart</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <form onSubmit={handleSubmit}>
             {/* <CardSection /> */}
             <CardElement/>
             <button disabled={!stripe}>Confirm order</button>
           </form>
+        </Modal.Body>
+      </Modal>
+
+      <Button data-toggle='button' onClick={handleShow}>
+        {cart} Cart
+      </Button>
     </Fragment>
   );
 }

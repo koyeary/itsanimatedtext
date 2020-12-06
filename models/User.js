@@ -15,6 +15,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  cart: {
+    type: Array
+  },
   date: {
     type: Date,
     default: Date.now

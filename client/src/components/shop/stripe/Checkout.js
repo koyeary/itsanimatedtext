@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,11 +6,17 @@ import { createCheckoutSession } from '../../../actions/stripe';
 import { Button } from 'react-bootstrap';
 //import CheckoutForm from './CheckoutForm';
 
-const Checkout = ({ createCheckoutSession, /* quantity  */}) => {
+const Checkout = ({ createCheckoutSession }) => {
+    const [checkoutData, setCheckoutData] = useState({
+        method: ['card'],
+        product: 'T-shirt',
+        quantity: 2
+    });
     const handleClick = async (e) => {
         e.preventDefault();
-        createCheckoutSession(1);
-      };
+        createCheckoutSession(checkoutData);
+      }
+
 
   return (
     <Fragment>
@@ -20,8 +26,7 @@ const Checkout = ({ createCheckoutSession, /* quantity  */}) => {
 };
 
 Checkout.propTypes = {
-    createCheckoutSession: PropTypes.func.isRequired,
-   // quantity: PropTypes.object.isRequired
+    createCheckoutSession: PropTypes.func.isRequired
 }
 
 export default connect(null, { createCheckoutSession })(Checkout);

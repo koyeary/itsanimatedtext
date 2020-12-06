@@ -6,7 +6,7 @@ import {
   CREATE_CHECKOUT_SESSION
 } from './types';
 
-export const createCheckoutSession = quantity => async dispatch => {
+export const createCheckoutSession = checkoutData => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -14,7 +14,7 @@ export const createCheckoutSession = quantity => async dispatch => {
   };
 
   try {
-    const res = await api.post('/stripe/create-checkout-session', quantity, config);
+    const res = await api.post('/stripe/create-checkout-session', checkoutData, config);
 
     dispatch({
       type: CREATE_CHECKOUT_SESSION,

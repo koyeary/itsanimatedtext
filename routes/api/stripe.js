@@ -42,36 +42,26 @@ router.post('/create-checkout-session', async (req, res) => {
       cancel_url: 'https://example.com/cancel'
     });
 
-    res.json({ id: session.id });
+   // localStorage.setItem('id', 'session.id');
+      res.send({id: session.id});
+
+   
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
-/* // @route    POST api/stripe/create-checkout-session
-// @desc     Check out cart
-// @access   Public
-router.post('/create-checkout-session', async (req, res) => {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'T-shirt',
-            },
-            unit_amount: 2000,
-          },
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: 'https://example.com/success',
-      cancel_url: 'https://example.com/cancel',
-    });
-  
-    res.json({ id: session.id });
-  }); */
+
+/* router.get('/session-id', async (req, res) => {
+  try {
+    const result = await stripe.redirectToCheckout({
+      id: 'cs_test_a1iQ47iE3EmUUBpeCbm4DG4IRYKvrnDPZba3GO1ekAK5rJlYq6Qil9NmNy'
+    })
+    res.json('it worked');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+}); */
 
 module.exports = router;

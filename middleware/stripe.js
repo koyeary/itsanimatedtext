@@ -1,18 +1,28 @@
-/*const passport       = require('passport');
-const User           = require('../models/User');
-const TumblrStrategy = require('passport-tumblr').Strategy;
-const config         = require('config');
+/* const jwt       = require('jsonwebtoken');
+const config    = require('config');
 
 
+module.exports = function (req, res, next) {
+  // Get token from header
+  const sessionId = req.header('sessionId');
 
-passport.use(new TumblrStrategy({
-    consumerKey: TUMBLR_CONSUMER_KEY,
-    consumerSecret: TUMBLER_SECRET_KEY,
-    callbackURL: 'http://127.0.0.1:3000/auth/tumblr/callback';
-},
-function(token, tokenSecret, profile, done) {
-    User.findOrCreate({ tumblrId: profile.id }, function (err, user) {
-        return done(err, user);
+  // Check if not token
+  if (!sessionId) {
+    return res.status(401).json({ msg: 'No session Id, no checkout session initiated' });
+  }
+
+  // Verify token
+  try {
+    jwt.verify(token, config.get('jwtSecret'), (error, decoded) => {
+      if (error) {
+        return res.status(401).json({ msg: 'Token is not valid' });
+      } else {
+        req.user = decoded.user;
+        next();
+      }
     });
-}
-)); */
+  } catch (err) {
+    console.error('something wrong with auth middleware');
+    res.status(500).json({ msg: 'Server Error' });
+  }
+} */

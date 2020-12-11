@@ -11,6 +11,7 @@ import Login from '../auth/Login';
 import Details from '../shop/categories.js/Details';
 import Checkout from '../shop/stripe/Checkout';
 import Cart from '../shop/stripe/Cart';
+import InfiniteScrollWrapper from '../blog/InfiniteScrollWrapper';
 //import Caps from '../shop/pages/Caps';
 //import Bestsellers from '../shop/pages/Bestsellers';
 //import Shirts from '../shop/pages/Shirts';
@@ -27,6 +28,7 @@ const Routes = (props) => {
       <Switch>
         <Route exact path='/'        component={Shop} />
         <Route path='/blog'          component={Blog} />
+        <Route path='/scroll'          component={InfiniteScrollWrapper} />
         <Route path='/shop'          component={Shop} />
         <Route path='/about'         component={About} />
         <Route path='/contact'       component={Contact} />

@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer';
+import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { Col, Row } from 'react-bootstrap';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    searchTumblr();
+    loadPosts();
   });
 
-  async function searchTumblr() {
-    //const num = Math.floor(Math.random() * 49 + 1);
+  async function loadPosts() {
     const queryURL =
       'https://api.tumblr.com/v2/blog/animatedtext.tumblr.com/posts?api_key=6zhnqA40ToF48oXKQFOVWRNfxfSTCFpO8xAJzWqUQOY3E1NOYj&limit=50';
 
@@ -38,6 +38,7 @@ const Blog = () => {
         const tags = item.tags.map((tag) => (
           <span className='px-2'>{`#${tag}`}</span>
         ));
+  
 
         return (
           <div>

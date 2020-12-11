@@ -1,55 +1,44 @@
 import api from '../utils/api';
-import { setAlert } from './alert';
 import {
   STRIPE_ERROR,
-  CREATE_PAYMENT_INTENT,
   CREATE_CHECKOUT_SESSION
 } from './types';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe(
+  'pk_test_51H5LHsBHBGQzSzD9juY9SuEcN29aSPSDtI2pIosRPM9WPqcYi6ZmonFYAzXhUC9ybfRWEp5OTQcnUa7M9FaFYLOQ00jfZYwGrA'
+);
 
-export const createCheckoutSession = checkoutData => async dispatch => {
+export const createCheckoutSession = (checkoutData) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
-
   try {
-    const res = await api.post('/stripe/create-checkout-session', checkoutData, config);
-
+    const res = await api.post(
+      '/stripe/create-checkout-session',
+      checkoutData,
+      config
+    );
     dispatch({
       type: CREATE_CHECKOUT_SESSION,
-      payload: res.data
+      payload: res.data.id
     });
-
-    dispatch(setAlert('Checkout session created', 'success'));
+    dispatch(redirectToCheckout(res.data.id));
   } catch (err) {
     dispatch({
-      type: STRIPE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: STRIPE_ERROR
     });
   }
 };
 
-export const createPaymentIntent = (formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+export const redirectToCheckout = (id) => async (dispatch) => {
+  const stripe = await stripePromise;
+  const result = stripe.redirectToCheckout({ sessionId: id });
 
-  try {
-    const res = await api.post('/stripe/create-payment-intent', formData, config);
-
+  if (result.error) {
     dispatch({
-      type: CREATE_PAYMENT_INTENT,
-      payload: res.data
-    });
-
-    dispatch(setAlert('Checkout session created', 'success'));
-  } catch (err) {
-    dispatch({
-      type: STRIPE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: STRIPE_ERROR
     });
   }
 };

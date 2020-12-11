@@ -2,7 +2,8 @@
 import {
   STRIPE_ERROR,
   CREATE_PAYMENT_INTENT,
-  CREATE_CHECKOUT_SESSION
+  CREATE_CHECKOUT_SESSION,
+  GET_CHECKOUT_SESSION_ID
 } from '../actions/types';
 
 const initialState = {
@@ -22,10 +23,10 @@ export default function (state = initialState, action) {
         product: payload,
         loading: false
       };
-    case CREATE_PAYMENT_INTENT:
+    case GET_CHECKOUT_SESSION_ID:
       return {
         ...state,
-        product: payload,
+        id: payload,
         loading: false
       };
       case STRIPE_ERROR:

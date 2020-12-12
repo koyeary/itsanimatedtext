@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# logging
+/client/.eslintcache
+
 # production
 /build
 /client/src/img/Animated Text Shop Images.zip

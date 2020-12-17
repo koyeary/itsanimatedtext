@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const stripe = require('stripe')(
-  'sk_test_51H5LHsBHBGQzSzD9lnlwfiEngrKrGOJ3rmVQ4GSrtL1IrqNmQyTO4oZQW66EaL2l9lYOFbrzOVHeQizjDTo8w2qz00BgzMQuaS'
-);
+const config = require('config');
+const stripe = require('stripe')(config.stripeSecret);
 
 // @route    POST api/stripe/create-payment-intent
 // @desc     Make a payment

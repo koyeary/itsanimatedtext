@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer';
-import useInfiniteScroll from 'react-infinite-scroll-hook';
+//import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { Col, Row } from 'react-bootstrap';
 
 const Blog = () => {
@@ -31,39 +31,39 @@ const Blog = () => {
       if (!item.photos) {
         return console.log(item.summary);
       } else if (item.photos) {
-        const photo = item.photos[0].alt_sizes[0].url;
-        const notes = item.note_count;
-        const source = item.source_title;
+        const photo     = item.photos[0].alt_sizes[0].url;
+        const notes     = item.note_count;
+        const source    = item.source_title;
         const sourceUrl = item.source_url;
-        const tags = item.tags.map((tag) => (
-          <span className='px-2'>{`#${tag}`}</span>
+        const tags      = item.tags.map((tag) => (
+          <span className="px-2">{`#${tag}`}</span>
         ));
   
 
         return (
           <div>
-            <Row className='my-5'>
+            <Row className="my-5">
               <Col sm={3} xs={12}></Col>
               <Col sm={6} xs={12}>
                 <div
-                  className='card blog'
-                  style={{ borderRadius: 7, borderColor: '#f8f7fd' }}
+                  className="card blog"
+                  style={{ borderRadius: 7, borderColor: "#f8f7fd" }}
                 >
-                  <div className='card-img-top'>
-                    <img className='w-100' src={photo} alt='tumblr post' />
+                  <div className="card-img-top">
+                    <img className="w-100" src={photo} alt="tumblr post" />
                   </div>
-                  <div className='card-section p-3'>
+                  <div className="card-section p-3">
                     Source:
-                    <Link to={sourceUrl} className='pl-2 pr-3 source'>
+                    <Link to={sourceUrl} className="pl-2 pr-3 source">
                       {source}
-                    </Link>{' '}
+                    </Link>{" "}
                     {tags}
-                    <Col className='pt-3 pb-2' style={{ fontWeight: 600 }}>
+                    <Col className="pt-3 pb-2" style={{ fontWeight: 600 }}>
                       {notes}
-                      <div className='float-right'>
-                        <i class='fa fa-ellipsis-h' aria-hidden='true'></i>
-                        <i class='fa fa-retweet' aria-hidden='true'></i>
-                        <i class='fa fa-heart-o' aria-hidden='true'></i>
+                      <div className="float-right">
+                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        <i class="fa fa-retweet" aria-hidden="true"></i>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
                       </div>
                     </Col>
                     <Row />

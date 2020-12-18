@@ -7,7 +7,7 @@ const config     = require('config');
 
 
 // POST route from contact form
-router.post('/', (req, res, next) => {
+router.post('/send', (req, res, next) => {
    let transporter = nodemailer.createTransport({
     service: 'yahoo',
     port: 465,
@@ -18,12 +18,10 @@ router.post('/', (req, res, next) => {
     } 
   }); 
 
-
-  // Specify what the email will look like
   const mailOpts = {
-    from: YAHOO_USER, // This is ignored by Gmail
+    from: config.YAHOO_USER, // This is ignored by Gmail
     to: config.redirectMail,
-    subject: `Message from ${req.body.name} through your portfolio`,
+    subject: `Message from ${req.body.name}`,
     text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
   };
 
